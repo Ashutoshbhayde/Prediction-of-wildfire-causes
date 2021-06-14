@@ -1,0 +1,70 @@
+<html>	
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type=text/javascript>
+			$(function() {
+			  $('a#process_input').bind('click', function() {
+				$.getJSON('/background_process', {
+				  
+				  LATITUDE: $('textarea[name="LATITUDE"]').val(),
+				  LONGITUDE: $('textarea[name="LONGITUDE"]').val(),
+				  DISCOVERY_DOY: $('textarea[name="DISCOVERY_DOY"]').val(),
+				  FIRE_SIZE: $('textarea[name="FIRE_SIZE"]').val(),
+				  STATE: $('textarea[name="STATE"]').val(),
+				  FIRE_YEAR: $('textarea[name="FIRE_YEAR"]').val(),
+				  MONTH: $('textarea[name="MONTH"]').val(),
+				  DAY_OF_WEEK: $('textarea[name="DAY_OF_WEEK"]').val(),
+				  FirePerMonth: $('textarea[name="FirePerMonth"]').val(),
+				  
+				}, function(data) {
+				  $("#result").text(data.result);
+				});
+				return false;
+			  });
+			});
+			
+		</script>
+	</head>
+	<body>
+		<div class='container'>
+		<h1 style="color: red">Prediction of Wildfire Causes</h1>
+		
+			<form>
+			<label for="LATITUDE">LATITUDE</label>
+			  <textarea name="LATITUDE" rows="1" cols="10"></textarea>>  
+			<label for="LONGITUDE">LONGITUDE</label>
+			  <textarea name="LONGITUDE" rows="1" cols="10"></textarea>>
+			<label for="DISCOVERY_DOY">DISCOVERY_DOY</label>
+			  <textarea name="DISCOVERY_DOY" rows="1" cols="10"></textarea>>
+			<label for="FIRE_SIZE">FIRE_SIZE</label>
+			  <textarea name="FIRE_SIZE" rows="1" cols="10"></textarea>> 	
+			<label for="STATE">STATE</label>
+			  <textarea name="STATE" rows="1" cols="10"></textarea>> 
+			<label for="FIRE_YEAR">FIRE_YEAR</label>
+			  <textarea name="FIRE_YEAR" rows="1" cols="10"></textarea>> 	  
+			<label for="MONTH">MONTH</label>
+			  <textarea name="MONTH" rows="1" cols="10"></textarea>><br>
+			 <br>
+			<label for="DAY_OF_WEEK">DAY_OF_WEEK</label>
+			  <textarea name="DAY_OF_WEEK" rows="1" cols="10"></textarea>> 
+			<label for="FirePerMonth">FirePerMonth</label>
+			  <textarea name="FirePerMonth" rows="1" cols="10"></textarea>> 
+			
+				<a href=# id=process_input><button class='btn btn-default'>Submit</button></a>
+			</form>
+		<h3>Top 5 Predicted Causes with percentage</h3> 
+		<p id=result></p>
+		<br>
+		<h1 style="color: green">Note:</h1>
+		<h3>FIRE_SIZE :<span style="font-weight: normal"> Estimate of acres within the final perimeter of the fire.</h3>
+		<h3> DISCOVERY_DOY :<span style="font-weight: normal"> Day of year on which the fire was discovered or confirmed to exist.</h3>
+		<h3>STATES:<span style="font-weight: normal">  'AK', 'AL' ,'AR' ,'AZ' ,'CA' ,'CO', 'CT', 'DC' ,'DE' ,'FL', 'GA', 'IA' ,'ID' ,'IL'
+					'IN' ,'KS', 'KY' ,'LA', 'MA', 'MD', 'ME' ,'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND'
+					'NE', 'NH' ,'NJ', 'NM' ,'NV' ,'NY' ,'OH' ,'OK' ,'OR', 'PA' ,'PR' ,'RI' ,'SC' ,'SD'
+					'TN' ,'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'</span></h3>
+		<h3>DAY_OF_WEEK:<span style="font-weight: normal"> 'Friday' ,'Monday' ,'Saturday' ,'Sunday', 'Thursday','Tuesday' ,'Wednesday'</h3> 
+		
+
+		</div>
+	</body>
+</html>
